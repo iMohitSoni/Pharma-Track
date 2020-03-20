@@ -1,0 +1,196 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+services:
+
+  orderer.example.com:
+    container_name: orderer.example.com
+    extends:
+      file: peer-base.yaml
+      service: orderer-base
+    volumes:
+        - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
+        - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
+        - orderer.example.com:/var/hyperledger/production/orderer
+    ports:
+      - 7050:7050
+
+  peer0.manufacturer.example.com:
+    container_name: peer0.manufacturer.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.manufacturer.example.com
+      - CORE_PEER_ADDRESS=peer0.manufacturer.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.manufacturer.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.manufacturer.example.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.manufacturer.example.com:7051
+      - CORE_PEER_LOCALMSPID=ManufacturerMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/manufacturer.example.com/peers/peer0.manufacturer.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/manufacturer.example.com/peers/peer0.manufacturer.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.manufacturer.example.com:/var/hyperledger/production
+    ports:
+      - 7051:7051
+
+  peer1.manufacturer.example.com:
+    container_name: peer1.manufacturer.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.manufacturer.example.com
+      - CORE_PEER_ADDRESS=peer1.manufacturer.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.manufacturer.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.manufacturer.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.manufacturer.example.com:7051
+      - CORE_PEER_LOCALMSPID=ManufacturerMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/manufacturer.example.com/peers/peer1.manufacturer.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/manufacturer.example.com/peers/peer1.manufacturer.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.manufacturer.example.com:/var/hyperledger/production
+
+    ports:
+      - 8051:7051
+
+  peer0.logistics.example.com:
+    container_name: peer0.logistics.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.logistics.example.com
+      - CORE_PEER_ADDRESS=peer0.logistics.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.logistics.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.logistics.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.logistics.example.com:7051
+      - CORE_PEER_LOCALMSPID=LogisticsMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/logistics.example.com/peers/peer0.logistics.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/logistics.example.com/peers/peer0.logistics.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.logistics.example.com:/var/hyperledger/production
+    ports:
+      - 9051:7051
+
+  peer1.logistics.example.com:
+    container_name: peer1.logistics.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.logistics.example.com
+      - CORE_PEER_ADDRESS=peer1.logistics.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.logistics.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.logistics.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.logistics.example.com:7051
+      - CORE_PEER_LOCALMSPID=LogisticsMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/logistics.example.com/peers/peer1.logistics.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/logistics.example.com/peers/peer1.logistics.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.logistics.example.com:/var/hyperledger/production
+    ports:
+      - 10051:7051
+  peer0.wholeseller.example.com:
+    container_name: peer0.wholeseller.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.wholeseller.example.com
+      - CORE_PEER_ADDRESS=peer0.wholeseller.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.wholeseller.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.wholeseller.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.wholeseller.example.com:7051
+      - CORE_PEER_LOCALMSPID=WholesellerMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/wholeseller.example.com/peers/peer0.wholeseller.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/wholeseller.example.com/peers/peer0.wholeseller.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.wholeseller.example.com:/var/hyperledger/production
+    ports:
+      - 11051:7051
+
+  peer1.wholeseller.example.com:
+    container_name: peer1.wholeseller.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.wholeseller.example.com
+      - CORE_PEER_ADDRESS=peer1.wholeseller.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.wholeseller.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.wholeseller.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.wholeseller.example.com:7051
+      - CORE_PEER_LOCALMSPID=WholesellerMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/wholeseller.example.com/peers/peer1.wholeseller.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/wholeseller.example.com/peers/peer1.wholeseller.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.wholeseller.example.com:/var/hyperledger/production
+    ports:
+      - 12051:7051
+  peer0.retailer.example.com:
+    container_name: peer0.retailer.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.retailer.example.com
+      - CORE_PEER_ADDRESS=peer0.retailer.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.retailer.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.retailer.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.retailer.example.com:7051
+      - CORE_PEER_LOCALMSPID=RetailerMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/retailer.example.com/peers/peer0.retailer.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/retailer.example.com/peers/peer0.retailer.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.retailer.example.com:/var/hyperledger/production
+    ports:
+      - 13051:7051
+
+  peer1.retailer.example.com:
+    container_name: peer1.retailer.example.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.retailer.example.com
+      - CORE_PEER_ADDRESS=peer1.retailer.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.retailer.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.retailer.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.retailer.example.com:7051
+      - CORE_PEER_LOCALMSPID=RetailerMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/retailer.example.com/peers/peer1.retailer.example.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/retailer.example.com/peers/peer1.retailer.example.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.retailer.example.com:/var/hyperledger/production
+    ports:
+      - 14051:7051

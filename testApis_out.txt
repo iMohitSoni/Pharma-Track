@@ -1,0 +1,81 @@
+POST request Enroll on manufacturer  ...
+
+{"success":true,"secret":"","message":"Jim enrolled Successfully","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzYsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Im1hbnVmYWN0dXJlciIsImlhdCI6MTU4NDY5NzczNn0.JOkBJqGwY6egn653PS7RQUshIi8ViZ6-nYRUOCN8Jvg"}
+
+manufacturer token is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzYsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Im1hbnVmYWN0dXJlciIsImlhdCI6MTU4NDY5NzczNn0.JOkBJqGwY6egn653PS7RQUshIi8ViZ6-nYRUOCN8Jvg
+
+POST request Enroll on logistics ...
+
+{"success":true,"secret":"","message":"Barry enrolled Successfully","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzcsInVzZXJuYW1lIjoiQmFycnkiLCJvcmdOYW1lIjoibG9naXN0aWNzIiwiaWF0IjoxNTg0Njk3NzM3fQ.QACap-3G1QnuU-KGcqt02bt4OQ3s8TC4YraFbV-NQ0g"}
+
+logistics token is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzcsInVzZXJuYW1lIjoiQmFycnkiLCJvcmdOYW1lIjoibG9naXN0aWNzIiwiaWF0IjoxNTg0Njk3NzM3fQ.QACap-3G1QnuU-KGcqt02bt4OQ3s8TC4YraFbV-NQ0g
+
+POST request Enroll on wholeseller  ...
+
+{"success":true,"secret":"","message":"Hari enrolled Successfully","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzcsInVzZXJuYW1lIjoiSGFyaSIsIm9yZ05hbWUiOiJ3aG9sZXNlbGxlciIsImlhdCI6MTU4NDY5NzczN30.ao4Qg0MFpAeuTjui6_azFpB1rCeVt1do8i9PKlaosmc"}
+
+wholeseller token is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzcsInVzZXJuYW1lIjoiSGFyaSIsIm9yZ05hbWUiOiJ3aG9sZXNlbGxlciIsImlhdCI6MTU4NDY5NzczN30.ao4Qg0MFpAeuTjui6_azFpB1rCeVt1do8i9PKlaosmc
+
+POST request Enroll on retailer ...
+
+{"success":true,"secret":"","message":"Krishna enrolled Successfully","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzgsInVzZXJuYW1lIjoiS3Jpc2huYSIsIm9yZ05hbWUiOiJyZXRhaWxlciIsImlhdCI6MTU4NDY5NzczOH0.xDtjJeDhcW--rjauovxOjvjElJ6FDe8D4rJ57B-zPko"}
+
+retailer token is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MzM3MzgsInVzZXJuYW1lIjoiS3Jpc2huYSIsIm9yZ05hbWUiOiJyZXRhaWxlciIsImlhdCI6MTU4NDY5NzczOH0.xDtjJeDhcW--rjauovxOjvjElJ6FDe8D4rJ57B-zPko
+
+
+POST request Create channel  ...
+
+{"success":true,"message":"Channel 'mychannel' created Successfully"}
+
+POST request Join channel on manufacturer
+
+{"success":true,"message":"Successfully joined peers in organization manufacturer to the channel:mychannel"}
+
+POST request Join channel on logistics
+
+{"success":true,"message":"Successfully joined peers in organization logistics to the channel:mychannel"}
+
+POST request Join channel on wholeseller
+
+{"success":true,"message":"Successfully joined peers in organization wholeseller to the channel:mychannel"}
+
+POST request Join channel on retailer
+
+{"success":true,"message":"Successfully joined peers in organization retailer to the channel:mychannel"}
+
+POST request Update anchor peers on manufacturer
+
+{"success":true,"message":"Successfully update anchor peers in organization manufacturer to the channel 'mychannel'"}
+
+POST request Update anchor peers on logistics
+
+{"success":true,"message":"Successfully update anchor peers in organization logistics to the channel 'mychannel'"}
+
+POST request Update anchor peers on wholeseller
+
+{"success":true,"message":"Successfully update anchor peers in organization wholeseller to the channel 'mychannel'"}
+
+POST request Update anchor peers on retailer
+
+{"success":true,"message":"Successfully update anchor peers in organization retailer to the channel 'mychannel'"}
+
+POST Install chaincode on manufacturer
+
+{"success":true,"message":"Successfully installed chaincode"}
+
+POST Install chaincode on logistics
+
+{"success":true,"message":"Successfully installed chaincode"}
+
+POST Install chaincode on wholeseller
+
+{"success":true,"message":"Successfully installed chaincode"}
+
+POST Install chaincode on retailer
+
+{"success":true,"message":"Successfully installed chaincode"}
+
+POST instantiate chaincode on manufacturer
+
+{"success":true,"message":"Successfully instantiate chaincode in organization manufacturer to the channel 'mychannel'"}
+
